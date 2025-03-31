@@ -39,8 +39,8 @@ A full-stack Kanban board application with secure login using JSON Web Tokens (J
 
 ## Screenshots
 
-![Login Page](/02%20Challenges/14-Todo-Board/client/src/assets/Screenshot%202025-03-31%20154333.png)  
-![Kanban Board](/02%20Challenges/14-Todo-Board/client/src/assets/Screenshot%202025-03-31%20154359.png)
+![Login Page](./client/src/assets/Screenshot%202025-03-31%20154333.png)  
+![Kanban Board](./client/src/assets/Screenshot%202025-03-31%20154359.png)
 
 ## Deployment
 
