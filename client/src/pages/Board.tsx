@@ -1,33 +1,28 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { retrieveTickets, deleteTicket } from '../api/ticketAPI';
-import ErrorPage from './ErrorPage';
 import Swimlane from '../components/Swimlane';
 import { TicketData } from '../interfaces/TicketData';
 import { ApiMessage } from '../interfaces/ApiMessage';
-import auth from '../utils/auth';
 
 const boardStates = ['Todo', 'In Progress', 'Done'];
 
 const Board = () => {
   const [tickets, setTickets] = useState<TicketData[]>([]);
-  const [error, setError] = useState(false);
-  const [loginCheck, setLoginCheck] = useState(false);
-
-  const checkLogin = () => {
-    if (auth.loggedIn()) {
-      setLoginCheck(true);
-    }
-  };
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true);
 
   const fetchTickets = async () => {
     try {
+      setError('');
       const data = await retrieveTickets();
       setTickets(data);
     } catch (err) {
       console.error('Failed to retrieve tickets:', err);
-      setError(true);
+      setError('The board could not load its tickets. Please refresh and try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -41,32 +36,9 @@ const Board = () => {
     }
   };
 
-  useLayoutEffect(() => {
-    checkLogin();
-  }, []);
-
   useEffect(() => {
-    if (loginCheck) {
-      void fetchTickets();
-    }
-  }, [loginCheck]);
-
-  if (error) {
-    return <ErrorPage />;
-  }
-
-  if (!loginCheck) {
-    return (
-      <section className='login-notice'>
-        <div className='login-notice-card'>
-          <span className='eyebrow'>Project workspace</span>
-          <h1>Keep work moving.</h1>
-          <p>Sign in to view your board, create tickets, and manage progress.</p>
-          <Link to='/login' className='primary-link'>Sign in to continue</Link>
-        </div>
-      </section>
-    );
-  }
+    void fetchTickets();
+  }, []);
 
   return (
     <section className='board'>
@@ -85,19 +57,28 @@ const Board = () => {
         </div>
       </div>
 
-      <div className='board-display'>
-        {boardStates.map((status) => {
-          const filteredTickets = tickets.filter((ticket) => ticket.status === status);
-          return (
-            <Swimlane
-              title={status}
-              key={status}
-              tickets={filteredTickets}
-              deleteTicket={deleteIndvTicket}
-            />
-          );
-        })}
-      </div>
+      {error ? (
+        <div className='board-message board-message--error' role='alert'>
+          <strong>Couldn’t load the board.</strong>
+          <span>{error}</span>
+        </div>
+      ) : loading ? (
+        <div className='board-message'>Loading tasks…</div>
+      ) : (
+        <div className='board-display'>
+          {boardStates.map((status) => {
+            const filteredTickets = tickets.filter((ticket) => ticket.status === status);
+            return (
+              <Swimlane
+                title={status}
+                key={status}
+                tickets={filteredTickets}
+                deleteTicket={deleteIndvTicket}
+              />
+            );
+          })}
+        </div>
+      )}
     </section>
   );
 };
