@@ -1,45 +1,41 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import auth from '../utils/auth';
 
 const Navbar = () => {
-  const [ loginCheck, setLoginCheck ] = useState(false);
-
-  const checkLogin = () => {
-    if(auth.loggedIn()) {
-      setLoginCheck(true);
-    }
-  };
+  const [loginCheck, setLoginCheck] = useState(false);
 
   useEffect(() => {
-    console.log(loginCheck);
-    checkLogin();
-  }, [loginCheck])
+    setLoginCheck(auth.loggedIn());
+  }, []);
+
+  const handleLogout = () => {
+    auth.logout();
+  };
 
   return (
-    <div className='nav'>
-      <div className='nav-title'>
-        <Link to='/'>Krazy Kanban Board</Link>
-      </div>
-      <ul>
-      {
-        !loginCheck ? (
-          <li className='nav-item'>
-            <button type='button'>
-              <Link to='/login'>Login</Link>
-            </button>
-          </li>
+    <header className='nav'>
+      <Link to='/' className='nav-brand' aria-label='Kanban board home'>
+        <span className='nav-brand-mark'>K</span>
+        <span className='nav-brand-copy'>
+          <strong>Kanban</strong>
+          <small>Plan. Track. Ship.</small>
+        </span>
+      </Link>
+
+      <nav className='nav-actions' aria-label='Primary navigation'>
+        {!loginCheck ? (
+          <Link to='/login' className='nav-button'>
+            Login
+          </Link>
         ) : (
-          <li className='nav-item'>
-            <button type='button' onClick={() => {
-              auth.logout();
-            }}>Logout</button>
-          </li>
-        )
-      }
-      </ul>
-    </div>
-  )
-}
+          <button type='button' className='nav-button nav-button--ghost' onClick={handleLogout}>
+            Logout
+          </button>
+        )}
+      </nav>
+    </header>
+  );
+};
 
 export default Navbar;
