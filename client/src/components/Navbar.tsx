@@ -1,18 +1,6 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import auth from '../utils/auth';
 
 const Navbar = () => {
-  const [loginCheck, setLoginCheck] = useState(false);
-
-  useEffect(() => {
-    setLoginCheck(auth.loggedIn());
-  }, []);
-
-  const handleLogout = () => {
-    auth.logout();
-  };
-
   return (
     <header className='nav'>
       <Link to='/' className='nav-brand' aria-label='Kanban board home'>
@@ -23,17 +11,9 @@ const Navbar = () => {
         </span>
       </Link>
 
-      <nav className='nav-actions' aria-label='Primary navigation'>
-        {!loginCheck ? (
-          <Link to='/login' className='nav-button'>
-            Login
-          </Link>
-        ) : (
-          <button type='button' className='nav-button nav-button--ghost' onClick={handleLogout}>
-            Logout
-          </button>
-        )}
-      </nav>
+      <div className='nav-actions'>
+        <span className='nav-button nav-button--ghost'>Portfolio Demo</span>
+      </div>
     </header>
   );
 };
