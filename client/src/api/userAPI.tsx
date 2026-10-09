@@ -1,15 +1,13 @@
-const retrieveUsers = async () => {
-  const response = await fetch('/api/users', {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
+import { UserData } from '../interfaces/UserData';
 
-  if (!response.ok) {
-    throw new Error(`User request failed with status ${response.status}`);
-  }
+const demoUsers: UserData[] = [
+  { id: 1, username: 'JollyGuru' },
+  { id: 2, username: 'SunnyScribe' },
+  { id: 3, username: 'RadiantComet' },
+];
 
-  return response.json();
+const retrieveUsers = async (): Promise<UserData[]> => {
+  return demoUsers.map((user) => ({ ...user }));
 };
 
-export { retrieveUsers };
+export { demoUsers, retrieveUsers };
