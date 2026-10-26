@@ -63,13 +63,7 @@ Open your browser at `http://localhost:3000` to log in and manage your tasks.
 
 ---
 
-## 📸 **Screenshots**
-
-**Login Page**
-
-![Login Page](./client/src/assets/Screenshot%202025-03-31%20154333.png)
-
-**Kanban Board**
+## 📸 **Screenshot**
 
 ![Kanban Board](./docs/portfolio/cover.webp)
 
