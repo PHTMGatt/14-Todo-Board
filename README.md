@@ -1,5 +1,6 @@
-
 # 📌 **Kanban Board with JWT Authentication**
+
+![Kanban Board portfolio artwork](https://raw.githubusercontent.com/PHTMGatt/12-React-Portfolio/a2c43d8301679dbda14ad06dc225d61e5515e431/src/assets/project-images/Kanban.png)
 
 ---
 
@@ -69,9 +70,9 @@ Open your browser at `http://localhost:3000` to log in and manage your tasks.
 
 ![Login Page](./client/src/assets/Screenshot%202025-03-31%20154333.png)
 
-**Kanban Board**
+**Portfolio Artwork**
 
-![Kanban Board](./docs/portfolio/cover.webp)
+![Kanban Board portfolio artwork](https://raw.githubusercontent.com/PHTMGatt/12-React-Portfolio/a2c43d8301679dbda14ad06dc225d61e5515e431/src/assets/project-images/Kanban.png)
 
 ---
 
