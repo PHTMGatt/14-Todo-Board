@@ -71,7 +71,7 @@ Open your browser at `http://localhost:3000` to log in and manage your tasks.
 
 **Kanban Board**
 
-![Kanban Board](./client/src/assets/Screenshot%202025-03-31%20154359.png)
+![Kanban Board](./docs/portfolio/cover.webp)
 
 ---
 
