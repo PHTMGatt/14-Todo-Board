@@ -65,7 +65,7 @@ Open your browser at `http://localhost:3000` to log in and manage your tasks.
 
 ## 📸 **Screenshot**
 
-![Kanban Board](./docs/portfolio/cover.webp)
+![Kanban Board](https://raw.githubusercontent.com/PHTMGatt/12-React-Portfolio/main/src/assets/photos/Kanban.png)
 
 ---
 
