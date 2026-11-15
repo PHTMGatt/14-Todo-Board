@@ -37,7 +37,21 @@ const Board = () => {
   };
 
   useEffect(() => {
-    void fetchTickets();
+    let ignore = false;
+    retrieveTickets()
+      .then((data) => {
+        if (!ignore) setTickets(data);
+      })
+      .catch((err) => {
+        console.error('Failed to retrieve tickets:', err);
+        if (!ignore) setError('The board could not load its tickets. Please refresh and try again.');
+      })
+      .finally(() => {
+        if (!ignore) setLoading(false);
+      });
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   return (

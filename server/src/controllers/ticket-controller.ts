@@ -22,7 +22,7 @@ export const getAllTickets = async (_req: Request, res: Response) => {
 
 // GET /tickets/:id
 export const getTicketById = async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const { id } = req.params as { id: string };
   try {
     const ticket = await Ticket.findByPk(id, {
       include: [
@@ -56,7 +56,7 @@ export const createTicket = async (req: Request, res: Response) => {
 
 // PUT /tickets/:id
 export const updateTicket = async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const { id } = req.params as { id: string };
   const { name, status, description, assignedUserId } = req.body;
   try {
     const ticket = await Ticket.findByPk(id);
@@ -77,7 +77,7 @@ export const updateTicket = async (req: Request, res: Response) => {
 
 // DELETE /tickets/:id
 export const deleteTicket = async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const { id } = req.params as { id: string };
   try {
     const ticket = await Ticket.findByPk(id);
     if (ticket) {

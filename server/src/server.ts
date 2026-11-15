@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-dotenv.config();
+dotenv.config({ quiet: true });
 
 import express from 'express';
 import path from 'path';
@@ -12,7 +12,7 @@ app.use(express.static(clientDistPath));
 
 // The Kanban demo persists ticket changes in browser localStorage,
 // so the production server only needs to serve the React application.
-app.get('*', (_req, res) => {
+app.get('/{*splat}', (_req, res) => {
   res.sendFile(path.join(clientDistPath, 'index.html'));
 });
 

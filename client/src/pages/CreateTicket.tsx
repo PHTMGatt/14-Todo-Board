@@ -21,17 +21,16 @@ const CreateTicket = () => {
 
   const [users, setUsers] = useState<UserData[] | undefined>([]);
 
-  const getAllUsers = async () => {
-    try {
-      const data = await retrieveUsers();
-      setUsers(data);
-    } catch (err) {
-      console.error('Failed to retrieve user info', err);
-    }
-  };
-
   useEffect(() => {
-    getAllUsers();
+    let ignore = false;
+    retrieveUsers()
+      .then((data) => {
+        if (!ignore) setUsers(data);
+      })
+      .catch((err) => console.error('Failed to retrieve user info', err));
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   const handleSubmit = async (e: FormEvent) => {
