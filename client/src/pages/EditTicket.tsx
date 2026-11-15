@@ -10,18 +10,19 @@ const EditTicket = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  const fetchTicket = async (ticketId: TicketData) => {
-    try {
-      const data = await retrieveTicket(ticketId.id);
-      setTicket(data);
-    } catch (err) {
-      console.error('Failed to retrieve ticket:', err);
-    }
-  }
+  const ticketId = (state as Pick<TicketData, 'id'> | null)?.id ?? null;
 
   useEffect(() => {
-    fetchTicket(state);
-  }, []);
+    let ignore = false;
+    retrieveTicket(ticketId)
+      .then((data) => {
+        if (!ignore) setTicket(data);
+      })
+      .catch((err) => console.error('Failed to retrieve ticket:', err));
+    return () => {
+      ignore = true;
+    };
+  }, [ticketId]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
