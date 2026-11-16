@@ -1,4 +1,10 @@
-# 📌 **Kanban Board**
+# Kanban Board
+
+Plan. Track. Ship. A full-stack Kanban board for creating, editing and moving tasks across To Do, In Progress and Done.
+
+[![Live demo](https://img.shields.io/badge/live%20demo-online-2ea44f)](https://one4-todo-board.onrender.com)
+
+![Kanban Board with tasks in three columns](docs/screenshot.png)
 
 ---
 
