@@ -72,7 +72,7 @@ This runs the server on port 3001 (nodemon) and the Vite dev server on `http://l
 
 There is no test suite. CI (`security-low`) runs a secrets scan, `npm audit` and the build on every pull request.
 
-> **Note:** the Login page is a leftover from the original JWT version. The server no longer exposes `/auth/login`, so logging in does nothing; the board works without it. The Sequelize models, seeds (`npm run seed`) and `server/db/schema.sql` are also unused at runtime.
+> **Note:** the Login page is a leftover from the original JWT version. The server no longer exposes `/auth/login`, so logging in does nothing; the board works without it. The old Sequelize models, controllers and seeds were removed along with their dependencies; `server/db/schema.sql` is kept only as a reference.
 
 ---
 
