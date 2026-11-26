@@ -8,6 +8,10 @@ Plan. Track. Ship. A full-stack Kanban board for creating, editing and moving ta
 
 ---
 
+## Status
+
+Checked 2026-11-26 on Windows with Node 26. `npm install`, `npm run build` and the client lint pass, and `npm start` answers HTTP 200 on the app page. The board was not clicked through in a browser. No test suite.
+
 ## 🔐 **Description**
 
 A **full-stack Kanban board application** for viewing, creating, editing and moving tasks. It began as a JWT-auth exercise; the live demo now runs without a database and saves tickets in your browser.
